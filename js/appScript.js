@@ -59,7 +59,7 @@ $(document).ready(function(){
 				var totalqty = 0;
 				// console.log(prd_array);
 				$.each(prd_array, function (product_id,prd_qty) {
-			    	if(jQuery.inArray(product_id, brandObj[$brd_name]) !== -1){
+			    	if(jQuery.inArray(product_id, brandObj[$brd_name]) !== -1 && (typeof prd_qty != 'undefined')){
 			    		
 			    		totalqty = totalqty + parseInt(prd_qty);
 			    		//alert(product_id+'--'+prd_qty);
@@ -69,7 +69,7 @@ $(document).ready(function(){
 
 				});
 				//alert(totalqty);
-				if(jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) != -1 && (prd_qty != undefined)){
+				if(jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) != -1 ){
 					console.log("inarray");
 					totalqty = parseInt(totalqty) + parseInt(qty);
 				}
@@ -145,7 +145,7 @@ $(document).ready(function(){
 				//console.log(prd_array);
 				$.each(prd_array, function (product_id,prd_qty) {
 					//console.log(brandObj[$brd_name]);
-			    	if(jQuery.inArray(product_id, brandObj[$brd_name]) !== -1 && (prd_qty != undefined)){
+			    	if(jQuery.inArray(product_id, brandObj[$brd_name]) !== -1 && (typeof prd_qty != 'undefined')){
 			    		
 			    		totalqty = parseInt(totalqty) + parseInt(prd_qty);
 						//console.log(brandObj[$brd_name]);
