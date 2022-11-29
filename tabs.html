@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Page</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+   </head>
+   <body>
+      <div class="product-wrapper-container">
+         <div class="wrap">
+            <div class="container">
+               <ul class="tabs">
+                  <li class="tab-link current" data-tab="tab-1">General</li>
+                  <li class="tab-link" data-tab="tab-2">Product</li>
+                  <li class="tab-link" data-tab="tab-3">Group</li>
+                  <li class="tab-link" data-tab="tab-4">Messages</li>
+                  <li class="tab-link" data-tab="tab-4">Preferences</li>
+                  <li class="tab-link" data-tab="tab-4">Help</li>
+               </ul>
+               <!-- END TABS -->
+               <div id="tab-1" class="tab-content current">
+                  <div class="genral-container">
+                     <p><b>Subtotal Limits</b></p>
+                     <p>Define the minimum and maximum cart subtotal, excluding shipping and taxes, and verify that the customer's cart contents are always within the set price range.</p>
+                     <div class="order-container">
+                     <div class="input-content">
+                        <label>Minimum total order amount</label>
+                        <div class="tooltip">
+                           <div class="ruppes">₹</div>
+                           <input type="number" placeholder="0.00" />
+                            <span class="tooltiptext">This minimum is applied to the <b>total</b> price of ALL items in shopping cart.
+                           If you need to <b>exclude</b> certain products, please use functionality provided by our <a>Group</a>
+                           settings section <b>instead.</b> Standard Shopify discounts are ignored during the minimum verification.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     <div class="input-content">
+                        <label>Maximum total order amount</label>
+                        <div class="tooltip">
+                           <div class="ruppes">₹</div>
+                           <input type="number" placeholder="" />
+                           <span class="tooltiptext">This minimum is applied to the <b>total</b> price of ALL items in shopping cart.
+                           If you need to <b>exclude</b> certain products, please use functionality provided by our 
+                           settings section <b>instead.</b> Standard Shopify discounts are ignored during the minimum verification.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     </div>
+                     <!-- END ORDER-CONTAINER -->
+
+                     <div class="box-content">
+                     <p><b>Total item limits</b></p>
+                     <p>Define the minimum and maximum item quantity and verify that the customer's cumulative cart contents are always within the quantity range you set.</p>
+                      <div class="order-container">
+                     <div class="input-content">
+                        <label>Minimum order amount (total items)</label>
+                        <div class="tooltip">
+                           <input type="number" placeholder="#" />
+                            <span class="tooltiptext">This minimum is applied to the <b>total</b> quantity of ALL items in shopping cart. If you need to <b>exclude</b> certain products, please use functionality provided by our Group settings section <b>instead.</b></span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     <div class="input-content">
+                        <label>Maximum total order amount</label>
+                        <div class="tooltip">
+                           <input type="number" placeholder="#" />
+                           <span class="tooltiptext">This minimum is applied to the <b>total</b> quantity of ALL items in shopping cart. If you need to <b>exclude</b> certain products, please use functionality provided by our Group settings section <b>instead.</b></span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     <div class="input-content">
+                        <label>Multiple of total items</label>
+                        <div class="tooltip">
+                           <input type="number" placeholder="#" />
+                           <span class="tooltiptext">Is only useful when you need to sell everything in certain multiples.Example: for combined wine 6-packs only (6, 12, 18, etc.) enter 6 into this field.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     </div>
+                     <!-- END ORDER-CONTAINER -->
+                    </div>
+                    <!-- END BOX-CONTENT -->
+
+                     <div class="box-content">
+                     <p><b>Individual Item Limits</b></p>
+                     <p>Define the minimum and maximum item quantity per individual product and verify that each SKU in the customer's cart is always within the quantity range you set.<br>
+                     <i>Note: If you've set your minimum item quantity for each unique product in the cart at 10, then your customer's cart must include: 10 of Product A AND 10 of Product B to satisfy the minimum required quantity per product in their cart.</i>
+                     </p>
+                      <div class="order-container">
+                     <div class="input-content">
+                        <label>Minimum number of same item</label>
+                        <div class="tooltip">
+                           <input type="number" placeholder="#" />
+                            <span class="tooltiptext">Minimal quantity for <b>any SKU</b> found in shopping cart. This minimum does not apply to the products registed at our 
+                            "Product" settings tab.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     <div class="input-content">
+                        <label>Maximum number of same item</label>
+                        <div class="tooltip">
+                           <input type="number" placeholder="#" />
+                            <span class="tooltiptext">Minimal quantity for <b>any SKU</b> found in shopping cart. This minimum does not apply to the products registed at our 
+                            "Product" settings tab.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     <div class="input-content">
+                        <label>Multiple of same item</label>
+                        <div class="tooltip">
+                           <input type="number" placeholder="#" />
+                           <span class="tooltiptext">Is only useful when you need to sell something in certain multiples.Example: for soda 6-packs only (6, 12, 18, etc.) enter 6 into this field.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     </div>
+                     <!-- END ORDER-CONTAINER -->
+                    </div>
+                    <!-- END BOX-CONTENT -->
+
+                     <div class="box-content">
+                     <p><b>Weight Limits</b></p>
+                     <p>Define the minimum and maximum weight requirements and verify that your customer's cart order weight is within the weight range you set.<br>
+                     </p>
+                      <div class="order-container">
+                     <div class="input-content">
+                        <label>Minimum order weight (grams)</label>
+                        <div class="tooltip">
+                             <div class="ruppes">g</div>
+                           <input type="number" placeholder="" />
+                            <span class="tooltiptext">The weight is always set in <b>grams.</b>
+                            To find out how this value could be presented to customer in different units (kg or lb, please read an example located at our "Messages" settings tab.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     <div class="input-content">
+                        <label>Maximum order weight (grams)</label>
+                        <div class="tooltip">
+                            <div class="ruppes">g</div>
+                           <input type="number" placeholder="" />
+                           <span class="tooltiptext">The weight is always set in <b>grams.</b>
+                           To find out how this value could be presented to customer in different units (kg or lb, please read an example located at our "Messages" settings tab.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     </div>
+                     <!-- END ORDER-CONTAINER -->
+                    </div>
+                    <!-- END BOX-CONTENT -->
+
+                     <div class="box-content">
+                     <p><b>Override Limits</b></p>
+                     <p>Is there a minimum subtotal amount (excludes taxes and shipping) that would make all other limits nonessential? If so, define the minimum subtotal money amount to override all other limits.<br>
+                     </p>
+                      <div class="order-container">
+                     <div class="input-content">
+                        <label>Override all limits when subtotal greater than</label>
+                        <div class="tooltip">
+                             <div class="ruppes">₹</div>
+                           <input type="number" placeholder="" />
+                            <span class="tooltiptext">Also our "Preferences" settings tab provides a way to turn all the limits on/off for a certain customer tag.</span>
+                        </div>
+                        <!-- END TOOLTIP -->
+                     </div>
+                     <!-- END INPUT-CONTENT -->
+                     
+                     </div>
+                     <!-- END ORDER-CONTAINER -->
+                    </div>
+                    <!-- END BOX-CONTENT -->
+
+                  </div>
+                  <!-- END GENRAL-CONTAINER -->
+               </div>
+               <!-- END TAB-CONTENT -->
+
+               <div id="tab-2" class="tab-content">
+                  <div class="product-container">
+                      <p><b>What are Product Limits?</b></p>
+                     <p>Product limits are the minimum and maximum quantity for individual product/variant items that your customers may add to their cart. You have two methods to define product limits for each individual item you offer: Add a product or SKU (variant) from a database of your offerings or batch upload by CSV. Please find the buttons located at bottom of this page to perform the list updating of your choice.
+                     If you offer an item that is available in different variants (i.e. widgets in blue, red, and green), you can check the "Combine Variants" box to apply limits across all the individual item's variants.</p>
+                     
+                     <div class="inline-toolbox">
+                     <div class="toolbar">
+                        <div class="Click-here"><button>Add Product</button></div>        
+                          <div class="custom-model-main">
+                             <div class="custom-model-inner">        
+                               <div class="close-btn">×</div>
+                                 <div class="custom-model-wrap">
+                                    <div class="pop-up-content-wrap">
+                                      <h5>Select products</h5>
+                                      <div class="search-content">
+                                          <div class="search">
+                                             <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true"><path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm9.707 4.293-4.82-4.82a5.968 5.968 0 0 0 1.113-3.473 6 6 0 0 0-12 0 6 6 0 0 0 6 6 5.968 5.968 0 0 0 3.473-1.113l4.82 4.82a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414z"></path></svg>
+                                             <input type="text" name="" placeholder="Type to search">
+                                          </div>
+                                          <!-- END SEARCH -->
+                                        </div>
+                                        <!-- END SEARCH-CONTENT -->
+                                        <div class="image-checkbox">
+                                            <ul>
+                                               <li>
+                                                 <input type="checkbox" id="myCheckbox1" />
+                                                 <label for="myCheckbox1"><img src="images/image-gallery.png" />test</label>
+                                               </li>
+                                              </ul>
+                                        </div>
+                                        <!-- END IMAGE-CHECKBOX -->
+                                        <div class="product-select-bottom">
+                                           <div class="stack">
+                                              <p>0 products selected</p>
+                                           </div>
+                                           <!-- END STACK -->
+                                           <div class="product-btn-container">
+                                               <button><a href="">Cancel</a></button>
+                                                <button><a href="">select</a></button>
+                                           </div>
+                                           <!-- END PRODUCT-BTN-CONTAINER -->
+                                        </div>
+                                        <!-- end product-select-bottom -->
+                                    </div>
+                                    <!-- END POP-UP-CONTENT-WRAP -->
+                                 </div>
+                                 <!-- end custom-model-wrap -->  
+                               </div> 
+                               <!-- end custom-model-inner --> 
+                           <div class="bg-overlay"></div>
+                        </div>
+                        <!-- end custom-model-main --> 
+                        <div class="add-button"><button>Add SKU</button></div> 
+                        <div class="csv-button"><button>Add By CSV</button></div>
+                        <div class="csv-model-main">
+                             <div class="csv-model-inner">        
+                               <div class="close-btn">×</div>
+                                 <div class="csv-model-wrap">
+                                    <div class="csv-pop-up-content-wrap">
+                                     Content Here
+                                    </div>
+                                 </div>
+                                 <!-- end custom-model-wrap -->  
+                               </div> 
+                               <!-- end custom-model-inner --> 
+                           <div class="bg-overlay"></div>
+                        </div>
+                        <!-- END CUSTOM-MODEL-MAIN --> 
+                     </div> 
+                     <!-- END TOOLBAR -->
+                      <div class="search-container">
+                           <div class="search-box">
+                              <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true"><path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm9.707 4.293-4.82-4.82a5.968 5.968 0 0 0 1.113-3.473 6 6 0 0 0-12 0 6 6 0 0 0 6 6 5.968 5.968 0 0 0 3.473-1.113l4.82 4.82a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414z"></path></svg>
+                              <input type="text" name="" placeholder="Type to search">
+                           </div>
+                       </div>
+                       <!-- END SEARCH-CONTAINER -->
+                      </div>
+                      <!-- END INLINE-TOOLBOX -->
+                          <div class="product-table">
+                              <div class="product-content">
+                                  <div class="product-left">
+                                      <p>Product</p>
+                                  </div>
+                                  <!-- END PRODUCT-LEFT -->
+                                  <div class="product-right">
+                                      <ul>
+                                         <li><div class="tooltip-top">Min
+                                             <span class="tooltiptext">Minimal quantity for this product/SKU required per shopping cart. Entering any value here wouldn't make this item mandatory though. If the customer doesn't add it into their cart, the minimum wouldn't get triggered.</span>
+                                             </div>
+                                          </li>
+                                         <li><div class="tooltip-top">Max
+                                             <span class="tooltiptext">Maximal quantity for this product/SKU allowed per shopping cart. Entering 0 would be treated as if the maximum is unset. To disallow product's purchasing please enter any value between 0 and 1 (0.5 for instance), or (better) hide this product from your online store using the standard Shopify admin interface instead.</span>
+                                             </div>
+                                         </li>
+                                         <li><div class="tooltip-top">Multiple
+                                             <span class="tooltiptext">Is only useful when you need to sell something in certain multiples. Example: for soda 6-packs only (6, 12, 18, etc.) enter 6 below.</span>
+                                             </div>
+                                         </li>
+                                         <li><div class="tooltip-top">Combine Variants
+                                             <span class="tooltiptext">If this checkbox is turned ON, then all this (and only this) product's variants found in the cart would be limited as a total quantity. Otherwise, if it's turned OFF, then each variant/SKU would be required to meet those per-product Min, Max or Multiple individually.</span>
+                                             </div>
+                                         </li>
+                                         <li>Remove</li>
+                                      </ul>
+                                      <!-- END UL -->
+                                       </div>
+                                  <!-- END PRODUCT-RIGHT -->
+                                                               </div>
+                              <!-- END PRODUCT-CONTENT -->
+                                      <div class="add-sku-container">
+                                          <div class="add-sku-left">
+                                              <p><b>SKU:</b><input type="text"></p>
+                                          </div>
+                                          <!-- END SKU-LEFT -->
+                                          <div class="add-sku-right">
+                                              <ul>
+                                                 <li><input type="text"></li>
+                                                 <li><input type="text"></li>
+                                                 <li><input type="text"></li>
+                                              </ul>
+                                          </div>
+                                          <!-- END ADD-SKU-RIGHT -->
+                                          <div class="add-remove">
+                                              <a href="" class="close-remove">×</a>
+                                          </div>
+                                      </div>
+                                      <!-- END ADD-SKU-CONTAINER -->
+                                 
+
+                          </div> 
+                          <!-- END PRODUCT-TABLE -->
+                  </div>
+                  <!-- END PRODUCT-CONTAINER -->
+               </div>
+               <!-- END TAB-CONTENT -->
+               <div id="tab-3" class="tab-content">
+                   <div class="group-container">
+                       <p><b>What are Group Limits?</b></p>
+                       <p>Group limits are limit rules you set that apply across more than one item. You can categorize your items based on a common keyword in product titles, types, handles, variant titles, SKU, collection, tag or by similar price. Please read more tips in this article.</p>
+                       <div class="add-row">
+                       <div class="group-left">
+                          <div class="add-group-section">
+                               <button>add group</button> 
+                              <nav id="top-nav-menu">
+                                <ul class=""> 
+                                  <li class="dropdown-select"><a href="#"> <span>&diams;</span> </a>
+                                    <ul class="dropdown-menu">
+                                      <li><a href="#">Add generic group</a></li>
+                                      <li><a href="#">Add SKU List group</a></li>
+                                      <li><a href="#">Select profile products</a></li>
+                                    </ul>
+                                    <!-- END DROPDOWN-MENU -->
+                                  </li>
+                                </ul>
+                              </nav>
+                              <!-- END TOP-NAV-MENU -->
+                          </div>
+                          <!-- END ADD-GROUP-SECTION --> 
+                          <div class="add-link-btn">
+                             <div class="box">
+                               <a class="add-button" href="#csv-popup1"><button>Add By CSV</button></a>
+                             </div>
+                           <div id="csv-popup1" class="overlay">
+                              <div class="popup-container">
+                                 <h3>CSV Input</h3>
+                                 <a class="close" href="#">&times;</a>
+                                 <div class="column-csv">
+                                    <div class="group">
+                                       <div class="pro-select">
+                                        <label>Group by</label>
+                                        <select>
+                                           <option>product type</option>
+                                           <option>Condition Set</option>
+                                           <option>Collection</option>
+                                           <option>Customer Tag</option>
+                                           <option>Description</option>
+                                           <option>Price</option>
+                                           <option>Product</option>
+                                           <option>Product Tag</option>
+                                           <option>Product Title</option>
+                                           <option>Product Handle</option>
+                                           <option>Vendor</option>
+                                           <option>Variant Title</option>
+                                           <option>SKU</option>
+                                           <option>Weight in grams</option>
+                                        </select>
+                                        </div>
+                                        <!-- END PRO-SELECT -->
+                                        <div class="equal-select">
+                                            <select>
+                                           <option>equal to</option>
+                                           <option>containing</option>
+                                           <option>not containing</option>
+                                           <option>not equal to</option>
+                                           <option>equal one of</option>
+                                           <option>not one of</option>
+                                        </select>
+                                        </div>
+                                        <!-- END EQUAL-SELECT -->
+                                    </div>
+                                    <!-- END GROUP -->
+                                    <div class="form-inline">
+                                       <label>CSV Columns:&nbsp;</label>
+                                       <span><code>Filter</code>,&nbsp;</span>
+                                       <span><code>Title</code>,&nbsp;</span>
+                                       <span><code>Min</code>,&nbsp;</span>
+                                       <span><code>Max</code>,&nbsp;</span> 
+                                       <span><code>Multiple</code></span>
+                                    </div>
+                                    <!-- end form-inline -->
+                                   <div class="form-group">  
+                                     <textarea class="form-control"></textarea>
+                                   </div>
+                                   <!-- end form-group -->
+                                 </div>
+                                 <!-- END COLUMN-CSV -->
+                                 <div class="popup-bottom-row">
+                                     <button class="cancel-btn">cancel</button>
+                                     <button class="add-btn">Add</button>
+                                 </div>
+                                 <!-- end popup-bootom-row -->
+                              </div>
+                              <!-- END POPUP-CONTAINER -->
+                           </div>
+                           <!-- END CSV-POPUP1 -->
+                          </div>
+                          <!-- END ADD-LINK-BTN -->
+                       </div>
+                       <!-- END GROUP-LEFT -->
+                       <div class="group-right">
+                         <div class="search-container">
+                           <div class="search-box">
+                              <svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true"><path d="M8 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm9.707 4.293-4.82-4.82a5.968 5.968 0 0 0 1.113-3.473 6 6 0 0 0-12 0 6 6 0 0 0 6 6 5.968 5.968 0 0 0 3.473-1.113l4.82 4.82a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414z"></path></svg>
+                              <input type="text" name="" placeholder="Type to search">
+                           </div>
+                           <!-- END SEARCH-BOX -->
+                       </div>
+                       <!-- END SEARCH-CONTAINER" --> 
+                       </div>
+                       <!-- END GROUP-RIGHT -->
+                       </div>
+                       <!-- END ADD-ROW -->
+                       
+                       <div class="drag-container">
+                           <div class="group-limit">
+                              <button class="close-icon"><span class="Button__Text">×</span></button>
+                              <div class="product-selector">
+                                 <div class="price-selection">
+                                    <div class="price-wrap">
+                                       <label>Group by</label>
+                                       <div class="price-box">
+                                          <select>
+                                             <option>Condition Set</option>
+                                             <option>Customer Tag</option>
+                                             <option>Description</option>
+                                             <option>Price</option>
+                                             <option>Product</option>
+                                             <option>Product Tag</option>
+                                             <option>Product Title</option>
+                                             <option>Product Type</option>
+                                             <option>Product Handle</option>
+                                             <option>Vendor</option>
+                                             <option>Variant Title</option>
+                                             <option>Weight in grams</option>
+                                          </select>
+                                       </div>
+                                       <!-- END PRICE-BOX -->
+                                    </div>
+                                    <!-- END PRICE-WRAP -->
+                                 </div>
+                                 <!-- END PRICE-SELECTION --> 
+                                 <div class="equal-section">
+                                     <select>
+                                        <option>equal to</option>
+                                        <option>not equal to</option>
+                                        <option>greater than</option>
+                                        <option>less than</option>
+                                        <option>between</option>
+                                     </select>
+                                 </div>
+                                 <!-- END EQUAL-SECTION -->
+                                 <div class="price-input-connect">
+                                     <input type="text" name="" value="0.0">
+                                 </div>
+                                 <!-- END PRICE-INPUT-CONNECT -->
+                              </div>
+                              <!-- END PRODUCT-SELECTOR -->
+                              <div class="title-box">
+                                  <label>Title</label>
+                                  <input type="text" name="" placeholder="Free item">
+                              </div>
+                              <div class="quantity-container">
+                                 <div class="quantity-row">
+                                  <div class="min-quantity">
+                                      <label>minimum</label>
+                                      <input type="number" name="" placeholder="Min quantity">
+                                  </div>
+                                  <!-- END MIN-QUANTITY -->
+                                  <div class="max-quantity">
+                                      <label>maximum</label>
+                                      <input type="number" name="" placeholder="Max quantity">
+                                  </div>
+                                  <!-- END MIN-QUANTITY -->
+                                  </div>
+                                  <!-- END QUANTITY-ROW -->
+                                  <button type="button" class="Polaris-Link">more options</button>
+                              </div>
+                              <!-- END QUANTITY-CONTAINER -->
+                           </div>
+                           <!-- END GROUP-LIMIT -->
+                       </div>
+                       <!-- END DRAG-CONTAINER -->
+                       <div class="remove-toolbar">
+                           <button>Remove all</button>
+                       </div>
+                       <!-- END REMOVE-TOOLBAR -->
+                   </div>
+                   <!-- END GROUP-CONTAINER -->
+               </div>
+               <!-- END TAB-CONTENT -->
+               <div id="tab-4" class="tab-content">
+                  Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim 
+               </div>
+               <!-- END TAB-CONTENT -->
+            </div>
+            <!-- container -->
+         </div>
+         <!-- END INNERPADDING -->
+      </div>
+      <!-- END PRODUCT-WRAPPER-CONTAINER -->
+
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+      <!-- Script Start -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/main.js"></script>
+      <script src="bootstrap/js/bootstrap.min.js"></script>
+   </body>
+</html>
