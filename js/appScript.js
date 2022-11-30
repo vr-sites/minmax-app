@@ -6,15 +6,12 @@ $(document).ready(function(){
 	var min = 0;
 	//add to cart
 	var flag = 0;
-	// $(".cart-item-qty-input").change(function(e){
-	// 	var value = jQuery(this).val();
-	// 	alert(value);
-	// })
 	$(".quickview").hide();
 	$("#form-action-addToCart").click(function(e){
 		if(flag == '0'){
 			e.preventDefault();
 			var prd_array = [];
+			var prd_amount = [];
 		 	fetch('/api/storefront/carts?include=',
 			{
 			  'credentials':'include',
@@ -27,66 +24,72 @@ $(document).ready(function(){
 			  	if ((data[0] != undefined) && (data[0] != null)){
 				    $.each(data[0].lineItems.physicalItems, function (i,items) {
 				    	prd_array[items.productId] = parseInt(items.quantity);
+						prd_amount[items.productId] = parseFloat(items.salePrice) * parseInt(items.quantity);
 					});
 				}
-			    
-
 				var getValue= $("input[name=product_id]").val().trim();
 				var qty = $("input.form-input--incrementTotal").val();
 				var $brd_name = '';
-
 				$.each(brandObj, function (j,prd) {
 			    	if(jQuery.inArray(parseInt(getValue), prd) !== -1){
 			    		$brd_name = j;
 			    	}
 				});
-				console.log(brandObj[$brd_name]);
 				if ((settingObj[$brd_name] != undefined) && (settingObj[$brd_name] != null) && settingObj.length !== 0  ){
-					// if(settingObj[$brd_name].length !== 0){
-						console.log(settingObj[$brd_name]['1']);
+						//console.log(settingObj[$brd_name]['1']);
 						total = settingObj[$brd_name]['2'];
 						min = settingObj[$brd_name]['1'];
-					// }else{
-					// 	flag = 1;
-			    	// 	$("#form-action-addToCart").trigger("click");
-					// }
-					
+						min_amount = settingObj[$brd_name]['3'];
+						max_amount = settingObj[$brd_name]['4'];
 				 }else{
 				 	flag = 1;
 		    		console.log("failed");
 		    		$("#form-action-addToCart").trigger("click");
 				 }
 				var totalqty = 0;
+				var totalAmount = 0;
 				// console.log(prd_array);
 				$.each(prd_array, function (product_id,prd_qty) {
 			    	if(jQuery.inArray(product_id, brandObj[$brd_name]) !== -1 && (typeof prd_qty != 'undefined')){
-			    		
 			    		totalqty = totalqty + parseInt(prd_qty);
-			    		//alert(product_id+'--'+prd_qty);
-			    	}else{
-			    		//console.log(product_id+'helo');
 			    	}
-
 				});
-				//alert(totalqty);
-				if(jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) != -1 ){
+				  
+				  $.each(prd_amount, function (product_id1,amount) {
+			    	if(jQuery.inArray(product_id1, brandObj[$brd_name]) !== -1 && (typeof amount != 'undefined')){
+			    		totalAmount = parseFloat(totalAmount) + parseFloat(amount);
+			    	}
+				});
+				  
+				if(jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) != -1){
 					console.log("inarray");
 					totalqty = parseInt(totalqty) + parseInt(qty);
 				}
-				// console.log(getValue.trim());
-				console.log(totalqty);
-				if(totalqty>total && jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) !== -1){
-		    		alert("you can not add more then "+total+" product from this brand");
-		    		return false;
-		    	}else if(totalqty<min && jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) !== -1){
-		    		alert("you have to add more then "+min+" product from this brand");
-		    		return false;
-		    	}else{
-		    		flag = 1;
-		    		console.log();
-		    		$("#form-action-addToCart").trigger("click");
-		    		//alert(totalqty+'--'+total);
-		    	}
+				loadDoc1('product',parseInt(getValue)).then(function(data){
+					if(jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) != -1){
+						var cal_price = data['data']['calculated_price'];
+						cal_price = parseFloat(cal_price) * parseInt(qty);
+						//console.log(data['data']['calculated_price']);
+						totalAmount = parseFloat(totalAmount) + parseFloat(cal_price);
+					} 
+					totalAmount = totalAmount.toFixed(2)
+					console.log("tamount: "+totalAmount);
+					//return false;
+					if((totalqty>total || parseFloat(totalAmount)>parseFloat(max_amount)) && jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) !== -1){
+						alert("you can not add more then "+total+" product OR more then "+max_amount+" amount from this brand");
+						return false;
+					}else if((totalqty<min || parseFloat(totalAmount)<parseFloat(min)) && jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) !== -1){
+						alert("you have to add minimum "+min+" product OR minimum "+min_amount+" amount from this brand");
+						return false;
+					}else{
+						flag = 1;
+						console.log();
+						$("#form-action-addToCart").trigger("click");
+						//alert(totalqty+'--'+total);
+					}
+				});
+				
+				
 				    
 			  })
 			});
@@ -105,6 +108,7 @@ $(document).ready(function(){
 			var getValue = mythis.parent().find('button').attr("data-product-id").trim();
 			console.log(getValue);
 			var prd_array = [];
+			var prd_amount = [];
 		 	fetch('/api/storefront/carts?include=',
 			{
 			  'credentials':'include',
@@ -118,6 +122,7 @@ $(document).ready(function(){
 			    if ((data[0] != undefined) && (data[0] != null)){
 				    $.each(data[0].lineItems.physicalItems, function (i,items) {
 				    	prd_array[items.productId] = parseInt(items.quantity);
+						prd_amount[items.productId] = parseFloat(items.salePrice) * parseInt(items.quantity);
 					});
 				}
 				//var getValue= $("input[name=product_id]").val().trim();
@@ -135,6 +140,8 @@ $(document).ready(function(){
 						console.log(settingObj[$brd_name]['1']);
 						total = settingObj[$brd_name]['2'];
 						min = settingObj[$brd_name]['1'];
+						min_amount = settingObj[$brd_name]['3'];
+						max_amount = settingObj[$brd_name]['4'];
 				 }else{
 				 	flag = 1;
 		    		console.log(mythis);
@@ -146,14 +153,13 @@ $(document).ready(function(){
 				$.each(prd_array, function (product_id,prd_qty) {
 					//console.log(brandObj[$brd_name]);
 			    	if(jQuery.inArray(product_id, brandObj[$brd_name]) !== -1 && (typeof prd_qty != 'undefined')){
-			    		
 			    		totalqty = parseInt(totalqty) + parseInt(prd_qty);
-						//console.log(brandObj[$brd_name]);
-			    		console.log(product_id+'--'+prd_qty);
-			    	}else{
-			    		//console.log(product_id+'helo');
 			    	}
-
+				});
+				$.each(prd_amount, function (product_id1,amount) {
+			    	if(jQuery.inArray(product_id1, brandObj[$brd_name]) !== -1 && (typeof amount != 'undefined')){
+			    		totalAmount = parseFloat(totalAmount) + parseFloat(amount);
+			    	}
 				});
 				//console.log(totalqty);
 				if(jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) != -1){
@@ -161,20 +167,32 @@ $(document).ready(function(){
 					totalqty = parseInt(totalqty) + parseInt(qty);
 				}
 				// console.log(getValue.trim());
-				console.log("totalqty:"+totalqty+" min: "+min+" total: "+total);//return false;
-				if(totalqty>total && jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) !== -1){
-		    		alert("you can not add more then "+total+" product from this brand");
-		    		return false;
-		    	}else if(totalqty<min && jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) !== -1){
-		    		alert("you have to add more then "+min+" product from this brand");
-		    		return false;
-		    	}else{
-		    		flag = 1;
-		    		console.log(mythis);
-		    		//return true;
-		    		mythis['0'].click();
-		    		//alert(totalqty+'--'+total);
-		    	}
+				//console.log("totalqty:"+totalqty+" min: "+min+" total: "+total);//return false;
+				loadDoc1('product',parseInt(getValue)).then(function(data){
+					if(jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) != -1){
+						var cal_price = data['data']['calculated_price'];
+						cal_price = parseFloat(cal_price) * parseInt(qty);
+						  //console.log(data['data']['calculated_price']);
+						totalAmount = parseFloat(totalAmount) + parseFloat(cal_price);
+					  }
+					//totalAmount = totalAmount.toFixed(2)
+					console.log("tamount: "+totalAmount);
+					if((totalqty>total || parseFloat(totalAmount)>parseFloat(max_amount)) && jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) !== -1){
+						alert("you can not add more then "+total+" product OR more then "+max_amount+" amount from this brand");
+						return false;
+					}else if((totalqty<min || parseFloat(totalAmount)<parseFloat(min)) && jQuery.inArray(parseInt(getValue), brandObj[$brd_name]) !== -1){
+						alert("you have to add minimum "+min+" product OR minimum "+min_amount+" amount from this brand");
+						return false;
+					}else{
+						flag = 1;
+						console.log(mythis);
+						//return true;
+						mythis['0'].click();
+						//alert(totalqty+'--'+total);
+					}
+				});
+					  
+				
 				    
 			  })
 			});
@@ -185,3 +203,20 @@ $(document).ready(function(){
 	})
 	
 });
+function loadDoc1(type, id){
+  return $.ajax('https://danielnunney.com/bigapp2/ajax.php?type='+type+'&id='+id, 
+	{
+		dataType: 'jsonp', // type of response data
+		//timeout: 5000,     // timeout milliseconds
+		success: function (data,status,xhr) {   // success callback function
+			//console.log(data['data']);
+			//console.log(data['data']['calculated_price']);
+			data['data'];
+		},
+		error: function (jqXhr, textStatus, errorMessage) { // error callback 
+			console.log(errorMessage);
+			"error:"+errorMessage;
+		}
+	});
+};
+
